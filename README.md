@@ -12,18 +12,15 @@ Now open a terminal / command prompt,  navigate to the framework's package.json 
 
 ## Run Some Sample Tests
 
-To execute the entire test suite in local development, on shell
-
-`npm run tests`
+To execute the entire test suite in local development, on shell `npm run tests`
 
 ## Config Files
 
-Mocha config/opts files can be found in the `/test` directory end with `*.conf.opts`. Options mentioned in the .opts files is common to all test types.
+Mocha config/opts files can be found in the `/test` directory end with `mocha.opts`. Options mentioned in the .opts files is common to all test types.
 
 ## Reporters
 
-This framework generates below standard  reports. to generate reports execute below command
-`npm run report`
+This framework generates below standard  reports. to generate reports execute below command `npm run report`
 
 ##### Spec
 
@@ -31,11 +28,11 @@ Test reporter, that prints detailed results to console.
 
 ##### junit/xunit
 
-The JUnit reporter helps you to create xml reports for your CI server. Add it to the reports array in the config file and define the directory where the xml files should get stored.
+The `JUnit` reporter helps you to create xml reports for your CI server. Add it to the reports array in the config file and define the directory where the xml files should get stored.
 
 ##### JSON
 
-The JSON reporter is especially versatile. Since it produces a literal in a key : value pair, help to read, translate execution results to any custom reporter / it can be used to transport reporter events to another process and format them there, or to store the execution results back to any standard RDBMS or to NoSQL like mongodb with very minimal effort.
+The `JSON` reporter is especially versatile. Since it produces a literal in a key : value pair, help to read, translate execution results to any custom reporter / it can be used to transport reporter events to another process and format them there, or to store the execution results back to any standard RDBMS or to NoSQL like mongodb with very minimal effort.
 
 ## The key elements of a RESTful implementation are as follows:
 
@@ -67,7 +64,7 @@ These codes are the general codes which are returned along with the response fro
 
 ##### For complete set of REST API's refer to (https://www.npmjs.com/package/request)
 
-While there are quite a few options available to you in request (many of which we'll cover throughout this article), it can be pretty simple to use as well. The below examples for this library is as easy as passing a URL and a callback:
+While there are quite a few options available to you in `request` (many of which we'll cover throughout this article), it can be pretty simple to use as well. The below examples for this library is as easy as passing a URL and a callback:
 ```
 const request = require('request');
 
@@ -75,13 +72,14 @@ request('http://google.com', function(err, res, body) {
     console.log(body);
 });
 ```
-The code above submits an HTTP GET request to google.com and then prints the returned HTML to the screen. This type of request works for any HTTP endpoint, whether it returns HTML, JSON, an image, or just about anything else.
-
-The first argument to request can either be a URL string, or an object of options. Here are some of the more common options you'll encounter in your applications:
+The code above submits an HTTP GET request to google.com and then prints the returned HTML to the screen. This type of request works for any HTTP endpoint, whether it returns HTML, JSON, an image, or just about anything else. The first argument to request can either be a URL string, or an object of options. Here are some of the more common options you'll encounter in your applications:
 
 url: The destination URL of the HTTP request
+
 method: The HTTP method to be used (GET, POST, DELETE, etc)
+
 headers: An object of HTTP headers (key-value) to be set in the request
+
 form: An object containing key-value form data
 
 ```
@@ -100,7 +98,6 @@ request(options, function(err, res, body) {
     let json = JSON.parse(body);
     console.log(json);
 });
-
 ```
 Using the options object, this request uses the GET method to retrieve JSON data directly from Reddit, which is returned as a string in the body field. From here, you can use JSON.parse and use the data as a normal JavaScript object.
 
@@ -117,10 +114,10 @@ Each fulfills a different need (and there are even more ways to send data, which
 Speaking of helper methods, a much more succinct way of calling the different HTTP methods is to use the respective helper methods provided. Here are a few of the more commonly used ones:
 
 ```
-  request.get(options, callback)
-  request.post(options, callback)
-  request.head(options, callback)
-  request.delete(options, callback)
+request.get(options, callback)
+request.post(options, callback)
+request.head(options, callback)
+request.delete(options, callback)
 ```
 While this won't save you a ton of lines of code, it will at least make your code a bit easier to understand by allowing you to just look at the method being called and not having to parse through all of the various options to find it.
 
@@ -128,7 +125,7 @@ While this won't save you a ton of lines of code, it will at least make your cod
 
 Whether you're interfacing with a REST API or creating a bot to crawl and submit data on websites, at some point you'll need to submit data for a form. As always with request, this is can be done a few different ways, depending on your needs.
 
-For regular forms (URL-encoded, with a MIME type of application/x-www-form-urlencoded), you're best off using the .post() convenience method with the form object:
+For regular forms (URL-encoded, with a `MIME` type of application/x-www-form-urlencoded), you're best off using the .post() convenience method with the form object:
 ```
 let options = {  
     url: 'http://http://mockbin.com/request',
@@ -138,7 +135,6 @@ let options = {
     }
 };
 request.post(options, callback);
-
 ```
 This will upload data just like an HTML form would, with the only limitation being that you can't upload files this way. In order to do that, you need to use the formData option instead, which uses the form-data library underneath.
 
@@ -169,17 +165,16 @@ let formData = {
 };
 
 request.post('http://http://mockbin.com/request', {formData: formData}, callback);
-
 ```  
-This will send your files with a MIME type of multipart/form-data, which is a multipart form upload.
+This will send your files with a MIME type of `multipart/form-data`, which is a multipart form upload.
 
-While this will be more than sufficient for most users' use-cases, there are times where you need even more fine-grained control, like pre/post CLRFs (new-lines), chunking, or specifying your own multiparts. For more info on these extra options, check out this section of the request README.
+While this will be more than sufficient for most users' use-cases, there are times where you need even more fine-grained control, like pre/post CLRFs (new-lines), chunking, or specifying your own multiparts. For more info on these extra options, check out this section of the request README(https://www.npmjs.com/package/request#multipartrelated).
 
 ## Misc. Configurations
 
 There is a lot more to HTTP requests than just specifying a URL and downloading the data. For larger applications, and especially those that have to support a wider range of environments, your requests may need to handle quite a few configuration parameters, like proxies or special SSL trust certificates.
 
-One important misc. feature to point out is the request.defaults() method, which lets you specify default parameters so you don't have to give them for every request you make.
+One important misc. feature to point out is the `request.defaults()` method, which lets you specify default parameters so you don't have to give them for every request you make.
 
 ```
 let req = request.defaults({  
@@ -192,15 +187,14 @@ let req = request.defaults({
 req('http://your-api.com', function(err, res, body) {  
     console.log(body);
 });
-
 ```
-Now, in the example above, all requests made with req will always have the headers x-access-token and User-Agent set. This is ideal for setting headers like these, proxy servers, or TLS/SSL configurations.
+Now, in the example above, all requests made with req will always have the headers `x-access-token` and `User-Agent` set. This is ideal for setting headers like these, proxy servers, or TLS/SSL configurations.
 
 Throughout the rest of this section, we'll take a look at some more common features you'll come across:
 
 ## Proxies
 
-Whether your computer is behind a corporate proxy or you want to redirect your traffic to another country, at some point you may need to specify a proxy address. The simplest way to achieve this is to use the proxy option, which takes an address in which the traffic is proxied through:
+Whether your computer is behind a corporate proxy or you want to redirect your traffic to another country, at some point you may need to specify a `proxy` address. The simplest way to achieve this is to use the `proxy option`, which takes an address in which the traffic is proxied through:
 
 ```
 let options = {  
@@ -211,7 +205,7 @@ let options = {
 request(options, callback);
 
 ```
-The options object is one way to specify a proxy, but request also uses the following environment variables to configure a proxy connection:
+The  `options` object is one way to specify a proxy, but `request` also uses the following environment variables to configure a proxy connection:
 
 HTTPPROXY / httpproxy
 
@@ -219,15 +213,15 @@ HTTPSPROXY / httpsproxy
 
 NOPROXY / noproxy
 
-This gives you quite a bit more control, like setting which sites shouldn't be proxied via the NO_PROXY variable.
+This gives you quite a bit more control, like setting which sites shouldn't be proxied via the `NO_PROXY` variable.
 
 ## TLS/SSL
 
 Sometimes an API needs to have some extra security and therefore requires a client certificate. This is actually fairly common with private corporate APIs, so it's worth knowing how to do this.
 
-Another possible scenario is that you want your HTTP requests to explicitly trust certain certificate authorities, which could include certificates self-signed by you or your company.
+Another possible scenario is that you want your HTTP requests to explicitly trust certain `certificate authorities`, which could include certificates self-signed by you or your company.
 
-As with all of the other configurations we've seen so far, these are set in the options object:
+As with all of the other configurations we've seen so far, these are set in the  `options` object:
 
 ```
 const fs = require('fs');  
@@ -264,7 +258,7 @@ var options = {
 request.get(options);
 ```
 
-This option sets one of the HTTP headers as "authorization": "Basic c2NvdHQ6cGFzc3dvcmQh". The 'Basic' string in the 'authorization' header declares this to be a Basic Auth request and the alphanumeric string that follows is a RFC2045-MIME encoding (a variant of Base64) of our username and password.
+This option sets one of the HTTP headers as "authorization": "Basic c2NvdHQ6cGFzc3dvcmQh". The 'Basic' string in the 'authorization' header declares this to be a Basic Auth request and the alphanumeric string that follows is a `RFC2045-MIME` encoding (a variant of Base64) of our username and password.
 
 ### Redirects
 
@@ -306,12 +300,10 @@ describe('REST API testing using node.js/javascript', function() {
         });
     });
 });
-
 ```
-
 ## Conclusion
 
-No doubt request is a powerful module, and likely one that you'll use often. Given all of the features it provides along with Mocha JavaScript framework, it can act as a great starting point for automating anything from a web crawler to a client library for your API.
+No doubt `request` is a powerful module, and likely one that you'll use often. Given all of the features it provides along with `Mocha` JavaScript framework, it can act as a great starting point for `automating anything from a web crawler to a client library for your API`.
 
 ## Contribution
 
