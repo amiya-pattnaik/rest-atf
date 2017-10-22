@@ -1,6 +1,6 @@
-## RESTful API Test-Automation Framework
+## RESTful API test-automation framework
 
-This repository contains a collection of sample scripts designed to perform end to end test automation on JSON REST endpoints for POST, GET, PUT, DELETE etc. It uses Mocha and support ES6 (via babel-register). It generate Spec, JUNIT, JSON reporters as well.
+This repository contains a collection of sample scripts designed to perform end to end test automation on JSON REST endpoints. It uses Mocha as test runner and support ES6 (via babel-register). It generate Spec, JUNIT, JSON reporters as well.
 
 ## Installation
 
@@ -8,7 +8,7 @@ This project is tested on ***Node@6.10.0 , request@2.81.0*** and up.  While earl
 
 Install Node.JS from the site - https://nodejs.org/en/  take the LTS version based on your Operating system. Please make sure you install NodeJS globally. Recommended version is 6.10.0. OR  If you have nvm installed globally, you run `nvm install` to get the latest version of node specified in the`.nvmrc` file [here](/.nvmrc).  If you don't use nvm, be sure that you are using a compatible version. Further details on nvm can be found on the official [github page](https://github.com/creationix/nvm). MAC OSX users are best suited to install nvm with homebrew `brew install nvm`.
 
-Now open a terminal / command prompt,  navigate to the framework's package.json folder and run `npm install` to grab all dependencies.
+Now open a terminal (OSX) / command prompt (windows),  navigate to the framework's package.json folder and run `npm install` to grab all dependencies.
 
 ## Run Some Sample Tests
 
@@ -203,7 +203,6 @@ let options = {
 };
 
 request(options, callback);
-
 ```
 The  `options` object is one way to specify a proxy, but `request` also uses the following environment variables to configure a proxy connection:
 
@@ -239,7 +238,6 @@ var options = {
     ca: myCaFile
 };
 request.get(options);
-
 ```
 ## Basic Authentication
 
@@ -270,9 +268,9 @@ followRedirect: If true, then follow all HTTP 3xx redirects. Or submit a functio
 followAllRedirects: Follow all non-GET HTTP 3xx redirects
 maxRedirects: The maximum number of times to follow chained redirects (defaults to 10)
 
-## Using Mocha JavaScript framework
+## Tests using `Mocha` Javascript framework
 
-Tests are written in the Mocha framework. More about Jasmine can be found at https://mochajs.org/
+Tests are written in the Mocha framework. More about Mocha can be found [here](https://mochajs.org/)
 
 Tests are place in `*.js` files in the `/test/specs/` directory. A typical test will look similar to this:
 
