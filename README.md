@@ -1,6 +1,6 @@
-## REST API testing-with-Mocha
+## RESTful API Test-Automation Framework
 
-ngtaf4js(Next Generation Test Automation Framework 4 JavaScript with jasmine. This repository contains a collection of sample webdriverIO (Selenium - Node.js/JavaScript) projects and libraries that demonstrate how to use the tool and develop automation script using the Jasmine BDD framework. It support ES6 (via babel-register) and uses Grunt to manage tasks. It generate Spec, JUNIT, Allure, JSON reporters as well.
+This repository contains a collection of sample scripts designed to perform end to end test automation on JSON REST endpoints for POST, GET, PUT, DELETE etc. It uses Mocha and support ES6 (via babel-register). It generate Spec, JUNIT, JSON reporters as well.
 
 ## Installation
 
@@ -8,31 +8,24 @@ This project is tested on ***Node@6.10.0 , request@2.81.0*** and up.  While earl
 
 Install Node.JS from the site - https://nodejs.org/en/  take the LTS version based on your Operating system. Please make sure you install NodeJS globally. Recommended version is 6.10.0. OR  If you have nvm installed globally, you run `nvm install` to get the latest version of node specified in the`.nvmrc` file [here](/.nvmrc).  If you don't use nvm, be sure that you are using a compatible version. Further details on nvm can be found on the official [github page](https://github.com/creationix/nvm). MAC OSX users are best suited to install nvm with homebrew `brew install nvm`.
 
-Once installation is done - open terminal (MAC OS) or command prompt (windows OS) and type below command to verify NodeJS has been installed properly.
-
-          node --version
-          npm --version
-
-Above command should print out the version that you have installed.
-
-Now navigate to the framework's package.json folder and run `npm install` to grab all dependencies.
-
+Now open a terminal / command prompt,  navigate to the framework's package.json folder and run `npm install` to grab all dependencies.
 
 ## Run Some Sample Tests
 
-To execute the entire test suite in local development,
-    npm run tests
+To execute the entire test suite in local development, on shell
 
+```       npm run tests
+```
 
-## Config Files  -- need to be validated
+## Config Files
 
-Config files are found in the `/test/config/` directory and all end with `*.conf.js`.  These can be called via the the cli
+Mocha config/opts files can be found in the `/test` directory end with `*.conf.opts`. Options mentioned in the .opts files is common to all test types.
 
 ## Reporters
 
-This framework geerates two below standard  reports. to generate reports execute below command
-    npm run report
-
+This framework generates below standard  reports. to generate reports execute below command
+```       npm run report
+```
 ##### Spec
 
 Test reporter, that prints detailed results to console.
@@ -45,69 +38,35 @@ The JUnit reporter helps you to create xml reports for your CI server. Add it to
 
 The JSON reporter is especially versatile. Since it produces a literal in a key : value pair, help to read, translate execution results to any custom reporter / it can be used to transport reporter events to another process and format them there, or to store the execution results back to any standard RDBMS or to NoSQL like mongodb with very minimal effort.
 
-## Develop automation scripts for REST API testing
-
-For complete REST request API refer to (https://www.npmjs.com/package/request)
-
-
-#### Using Mocha JavaScript framework
-
-Tests are written in the Mocha framework. More about Jasmine can be found at https://mochajs.org/
-
-Tests are place in `*.specs.js` files in the `/test/specs/` directory. A typical test will look similar to this:
-//example.js
-
-```
-const request = require('request');
-
-describe('REST API testing using node.js/javascript', function() {
-    it('does a get request', function(done) {
-        const options = {  
-          url: 'https://www.reddit.com/r/funny.json',
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Accept-Charset': 'utf-8',
-            'User-Agent': 'my-reddit-client'
-          }
-        };
-
-        request(options, function(err, res, body) {  
-          let json = JSON.parse(body);
-          console.log(json);
-          done();
-        });
-    });
-});
-
-```
 ## The key elements of a RESTful implementation are as follows:
 
-### Resources –
+#### Resources –
 
 The first key element is the resource itself. Let assume that a web application on a server has records of several employees. Let's assume the URL of the web application is http://demo.mybank.com. Now in order to access an employee record resource via REST, one can issue the command http://demo.mybank.com/employee/1 - This command tells the web server to provide the details of the employee whose employee number is 1.
 
-### Request Verbs -
+#### Request Verbs -
 
 These describe what you want to do with the resource. A browser issues a GET verb to instruct the endpoint it wants to get data. However there are many other verbs available including things like POST, PUT, and DELETE. So in the case of the example http://demo.mybank.com/employee/1 , the web browser is actually issuing a GET Verb because it wants to get the details of the employee record.
 
-### Request Headers –
+#### Request Headers –
 
 These are additional instructions sent with the request. These might define the type of response required or the authorization details.
 
-### Request Body -
+#### Request Body -
 
 Data is sent with the request. Data is normally sent in the request when a POST request is made to the REST web service. In a POST call, the client actually tells the web service that it wants to add a resource to the server. Hence, the request body would have the details of the resource which is required to be added to the server.
 
-### Response Body –
+#### Response Body –
 
 This is the main body of the response. So in our example, if we were to query the web server via the request http://demo.mybank.com/employee/1 , the web server might return an XML document with all the details of the employee in the Response Body.
 
-### Response Status codes –
+#### Response Status codes –
 
 These codes are the general codes which are returned along with the response from the web server. An example is the code 200 which is normally returned if there is no error when returning a response to the client.
 
-## Making HTTP Requests
+## Making HTTP Requests using node and request module
+
+##### For complete set of REST API's refer to (https://www.npmjs.com/package/request)
 
 While there are quite a few options available to you in request (many of which we'll cover throughout this article), it can be pretty simple to use as well. The below examples for this library is as easy as passing a URL and a callback:
 ```
@@ -149,18 +108,26 @@ Using the options object, this request uses the GET method to retrieve JSON data
 
 This same request format can be used for any type of HTTP method, whether it's DELETE, PUT, POST, or OPTIONS. Although, not all methods are used exactly the same. Some, like the POST method, can include data within the request. There are a few ways this data can be sent, some of which are:
 
-body: A Buffer, String, or Stream object (can be an object if json option is set to true)
-form: An object of key-value pair data (we'll go over this later)
-multipart: An array of objects that can contain their own headers and body attributes
+##### body:
+    A Buffer, String, or Stream object (can be an object if json option is set to true)
+
+##### form:
+    An object of key-value pair data (we'll go over this later)
+
+##### multipart:
+    An array of objects that can contain their own headers and body attributes
+
 Each fulfills a different need (and there are even more ways to send data, which can be found in this section of NPM's request's README). The request module does contain some convenience methods that make these a bit easier to work with, however, so be sure to read the full docs to avoid making your code more difficult than it has to be.
 
 Speaking of helper methods, a much more succinct way of calling the different HTTP methods is to use the respective helper methods provided. Here are a few of the more commonly used ones:
 
-request.get(options, callback)
-request.post(options, callback)
-request.head(options, callback)
-request.delete(options, callback)
+```
+      request.get(options, callback)
+      request.post(options, callback)
+      request.head(options, callback)
+      request.delete(options, callback)
 
+```
 While this won't save you a ton of lines of code, it will at least make your code a bit easier to understand by allowing you to just look at the method being called and not having to parse through all of the various options to find it.
 
 ## Forms
@@ -345,11 +312,46 @@ followRedirect: If true, then follow all HTTP 3xx redirects. Or submit a functio
 followAllRedirects: Follow all non-GET HTTP 3xx redirects
 maxRedirects: The maximum number of times to follow chained redirects (defaults to 10)
 
+## Using Mocha JavaScript framework
+
+Tests are written in the Mocha framework. More about Jasmine can be found at https://mochajs.org/
+
+Tests are place in `*.js` files in the `/test/specs/` directory. A typical test will look similar to this:
+
+//example.js
+
+```
+const request = require('request');
+
+describe('REST API testing using node.js/javascript', function() {
+    it('does a get request', function(done) {
+        const options = {  
+          url: 'https://www.reddit.com/r/funny.json',
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Accept-Charset': 'utf-8',
+            'User-Agent': 'my-reddit-client'
+          }
+        };
+
+        request(options, function(err, res, body) {  
+          let json = JSON.parse(body);
+          console.log(json);
+          done();
+        });
+    });
+});
+
+```
 
 ## Conclusion
 
-No doubt request is a powerful module, and likely one that you'll use often. Given all of the features it provides, it can act as a great starting point for anything from a web crawler to a client library for your API.
+No doubt request is a powerful module, and likely one that you'll use often. Given all of the features it provides along with Mocha JavaScript framework, it can act as a great starting point for automating anything from a web crawler to a client library for your API.
 
+## Contribution
+
+Create a fork of the project into your own repository. Make all your necessary changes and create a pull request with a description on what was added or removed and details explaining the changes in lines of code. If approved, project owners will merge it.
 
 ## Licensing
 
