@@ -62,7 +62,7 @@ These codes are the general codes which are returned along with the response fro
 
 ## Making HTTP Requests using node and request module
 
-##### For complete set of REST API's refer to (https://www.npmjs.com/package/request)
+##### For complete set of API's refer to NPM's request's [README](https://www.npmjs.com/package/request)
 
 While there are quite a few options available to you in `request` (many of which we'll cover throughout this article), it can be pretty simple to use as well. The below examples for this library is as easy as passing a URL and a callback:
 ```
@@ -109,7 +109,7 @@ form: An object of key-value pair data (we'll go over this later)
 
 multipart: An array of objects that can contain their own headers and body attributes
 
-Each fulfills a different need (and there are even more ways to send data, which can be found in this section of NPM's request's README). The request module does contain some convenience methods that make these a bit easier to work with, however, so be sure to read the full docs to avoid making your code more difficult than it has to be.
+Each fulfills a different need (and there are even more ways to send data, which can be found in this section of NPM's request's [README](https://www.npmjs.com/package/request#requestoptions-callback)). The request module does contain some convenience methods that make these a bit easier to work with, however, so be sure to read the full docs to avoid making your code more difficult than it has to be.
 
 Speaking of helper methods, a much more succinct way of calling the different HTTP methods is to use the respective helper methods provided. Here are a few of the more commonly used ones:
 
@@ -168,7 +168,7 @@ request.post('http://http://mockbin.com/request', {formData: formData}, callback
 ```  
 This will send your files with a MIME type of `multipart/form-data`, which is a multipart form upload.
 
-While this will be more than sufficient for most users' use-cases, there are times where you need even more fine-grained control, like pre/post CLRFs (new-lines), chunking, or specifying your own multiparts. For more info on these extra options, check out this section of the request README(https://www.npmjs.com/package/request#multipartrelated).
+While this will be more than sufficient for most users' use-cases, there are times where you need even more fine-grained control, like pre/post CLRFs (new-lines), chunking, or specifying your own multiparts. For more info on these extra options, check out this section of the request [README](https://www.npmjs.com/package/request#multipartrelated).
 
 ## Misc. Configurations
 
