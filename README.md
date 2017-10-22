@@ -14,8 +14,7 @@ Now open a terminal / command prompt,  navigate to the framework's package.json 
 
 To execute the entire test suite in local development, on shell
 
-```       npm run tests
-```
+`npm run tests`
 
 ## Config Files
 
@@ -24,8 +23,8 @@ Mocha config/opts files can be found in the `/test` directory end with `*.conf.o
 ## Reporters
 
 This framework generates below standard  reports. to generate reports execute below command
-```       npm run report
-```
+`npm run report`
+
 ##### Spec
 
 Test reporter, that prints detailed results to console.
@@ -75,7 +74,6 @@ const request = require('request');
 request('http://google.com', function(err, res, body) {  
     console.log(body);
 });
-
 ```
 The code above submits an HTTP GET request to google.com and then prints the returned HTML to the screen. This type of request works for any HTTP endpoint, whether it returns HTML, JSON, an image, or just about anything else.
 
@@ -108,25 +106,21 @@ Using the options object, this request uses the GET method to retrieve JSON data
 
 This same request format can be used for any type of HTTP method, whether it's DELETE, PUT, POST, or OPTIONS. Although, not all methods are used exactly the same. Some, like the POST method, can include data within the request. There are a few ways this data can be sent, some of which are:
 
-##### body:
-    A Buffer, String, or Stream object (can be an object if json option is set to true)
+body: A Buffer, String, or Stream object (can be an object if json option is set to true)
 
-##### form:
-    An object of key-value pair data (we'll go over this later)
+form: An object of key-value pair data (we'll go over this later)
 
-##### multipart:
-    An array of objects that can contain their own headers and body attributes
+multipart: An array of objects that can contain their own headers and body attributes
 
 Each fulfills a different need (and there are even more ways to send data, which can be found in this section of NPM's request's README). The request module does contain some convenience methods that make these a bit easier to work with, however, so be sure to read the full docs to avoid making your code more difficult than it has to be.
 
 Speaking of helper methods, a much more succinct way of calling the different HTTP methods is to use the respective helper methods provided. Here are a few of the more commonly used ones:
 
 ```
-      request.get(options, callback)
-      request.post(options, callback)
-      request.head(options, callback)
-      request.delete(options, callback)
-
+  request.get(options, callback)
+  request.post(options, callback)
+  request.head(options, callback)
+  request.delete(options, callback)
 ```
 While this won't save you a ton of lines of code, it will at least make your code a bit easier to understand by allowing you to just look at the method being called and not having to parse through all of the various options to find it.
 
@@ -181,37 +175,6 @@ This will send your files with a MIME type of multipart/form-data, which is a mu
 
 While this will be more than sufficient for most users' use-cases, there are times where you need even more fine-grained control, like pre/post CLRFs (new-lines), chunking, or specifying your own multiparts. For more info on these extra options, check out this section of the request README.
 
-## Streams
-
-One of the most under-used features in many programming languages, in my opinion, are streams. Their usefulness extends beyond just network requests, but this serves as a perfect example as to why you should use them. For a short description on how and why you should use them, check out the "Streams" section of the Node HTTP Servers for Static File Serving article.
-
-In short, using streams for large amounts of data (like files) can help reduce your app's memory footprint and response time. To make this easier to use, each of the request methods can pipe their output to another stream.
-
-In this example, we download the Node.js logo using a GET request and stream it to a local file:
-
-let fileStream = fs.createWriteStream('node.png');  
-request('https://nodejs.org/static/images/logos/nodejs-new-white-pantone.png').pipe(fileStream);  
-As soon as the HTTP request starts returning parts of the downloaded image, it will 'pipe' that data directly to the file 'node.png'.
-
-Downloading a file this way has some other benefits as well. Streams are great for applying transformations on data as it is downloaded. So, for example, let's say you're downloading a large amount of sensitive data with request that needs to be encrypted immediately. To do this, you can apply an encryption transform by piping the output of request to crypto.createCipher:
-```
-
-let url = 'http://example.com/super-sensitive-data.json';  
-let pwd = new Buffer('myPassword');
-
-let aesTransform = crypto.createCipher('aes-256-cbc', pwd);  
-let fileStream = fs.createWriteStream('encrypted.json');
-
-request(url)  
-    .pipe(aesTransform)     // Encrypts with aes256
-    .pipe(fileStream)       // Write encrypted data to a file
-    .on('finish', function() {
-        console.log('Done downloading, encrypting, and saving!');
-    });
-
-```
-It's easy to overlook streams, and many people do when they're writing code, but they can help out your performance quite a bit, especially with a library like request.
-
 ## Misc. Configurations
 
 There is a lot more to HTTP requests than just specifying a URL and downloading the data. For larger applications, and especially those that have to support a wider range of environments, your requests may need to handle quite a few configuration parameters, like proxies or special SSL trust certificates.
@@ -251,7 +214,9 @@ request(options, callback);
 The options object is one way to specify a proxy, but request also uses the following environment variables to configure a proxy connection:
 
 HTTPPROXY / httpproxy
+
 HTTPSPROXY / httpsproxy
+
 NOPROXY / noproxy
 
 This gives you quite a bit more control, like setting which sites shouldn't be proxied via the NO_PROXY variable.
@@ -291,13 +256,12 @@ const request = require('request');
 var options = {  
     url: 'https://mockbin.com/request',
     auth: {
-        username: 'ScottWRobinson',
-        password: 'myPassword'
+        username: 'yourUserName',
+        password: 'yourPassword'
     }
 };
 
 request.get(options);
-
 ```
 
 This option sets one of the HTTP headers as "authorization": "Basic c2NvdHQ6cGFzc3dvcmQh". The 'Basic' string in the 'authorization' header declares this to be a Basic Auth request and the alphanumeric string that follows is a RFC2045-MIME encoding (a variant of Base64) of our username and password.
