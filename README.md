@@ -8,7 +8,7 @@ This project is tested on ***Node@6.10.0 , request@2.81.0*** and up.  While earl
 
 Install Node.JS from the site - https://nodejs.org/en/  take the LTS version based on your Operating system. Please make sure you install NodeJS globally. Recommended version is 6.10.0. OR  If you have nvm installed globally, you run `nvm install` to get the latest version of node specified in the`.nvmrc` file [here](/.nvmrc).  If you don't use nvm, be sure that you are using a compatible version. Further details on nvm can be found on the official [github page](https://github.com/creationix/nvm). MAC OSX users are best suited to install nvm with homebrew `brew install nvm`.
 
-Now open a terminal (OSX) / command prompt (windows),  navigate to the framework's package.json folder and run `npm install` to grab all dependencies.
+Now open a terminal (OSX) / command prompt (windows), navigate to the framework's package.json folder and run `npm install` to grab all dependencies.
 
 ## Run Some Sample Tests
 
@@ -125,7 +125,7 @@ While this won't save you a ton of lines of code, it will at least make your cod
 
 Whether you're interfacing with a REST API or creating a bot to crawl and submit data on websites, at some point you'll need to submit data for a form. As always with request, this is can be done a few different ways, depending on your needs.
 
-For regular forms (URL-encoded, with a `MIME` type of application/x-www-form-urlencoded), you're best off using the .post() convenience method with the form object:
+For regular forms (URL-encoded, with a `MIME` type of application/x-www-form-urlencoded), you're best off using the `.post()` convenience method with the form object:
 ```
 let options = {  
     url: 'http://http://mockbin.com/request',
@@ -135,10 +135,12 @@ let options = {
     }
 };
 request.post(options, callback);
+// or
+request.post({url:'http://service.com/upload', form: {key:'value'}}, function(err, httpResponse, body){ /* ... */ })
 ```
-This will upload data just like an HTML form would, with the only limitation being that you can't upload files this way. In order to do that, you need to use the formData option instead, which uses the form-data library underneath.
+This will upload data just like an HTML form would, with the only limitation being that you can't upload files this way. In order to do that, you need to use the `formData` option instead, which uses the form-data library underneath.
 
-Using formData instead, we can now pass file data to the server via Buffers, Streams, or even non-file data (as before) with simple key-value pairs.
+`Using formData` instead, we can now pass file data to the server via Buffers, Streams, or even non-file data (as before) with simple key-value pairs.
 
 ```
 let formData = {  
@@ -161,7 +163,7 @@ let formData = {
     },
 
     // Simple key-value pairs
-    username: 'ScottWRobinson'
+    username: 'yourUserName'
 };
 
 request.post('http://http://mockbin.com/request', {formData: formData}, callback);
