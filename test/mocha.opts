@@ -1,0 +1,6 @@
+--require should
+--reporter mocha-clean -R mocha-multi -O spec=-,xunit=./test/reports/results/xunit-results.xml,json=./test/reports/results/json-results.json
+--ui bdd
+--recursive ./test/specs/**/*.js
+--timeout 2000
+--colors
