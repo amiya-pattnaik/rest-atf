@@ -9,11 +9,11 @@ describe('It demonstrate RESTful Web Services testing using Node.JS --- ', funct
           console.log('statusCode:', response && response.statusCode);    // Print the response status code if a response was received
           console.log('body:', body);   // Print the HTML for the Google homepage.
         }
+        done();
     });
-    done();
   });
 
-  xit("uses GET method to retrieve JSON data from Reddit", function (done){
+  it("uses GET method to retrieve JSON data from Reddit", function (done){
     let options = {
       url: 'https://www.reddit.com/r/funny.json',
       method: 'GET',
@@ -26,8 +26,8 @@ describe('It demonstrate RESTful Web Services testing using Node.JS --- ', funct
 
     request(options, function(err, res, body) {
       console.log(body);
+      done();
     });
-    done();
   });
 
   it("shows how to use the Custom HTTP's Headers", function (done){
@@ -39,13 +39,13 @@ describe('It demonstrate RESTful Web Services testing using Node.JS --- ', funct
     };
 
     request(options, function(error, response, body) {
-        if (!error && response.statusCode == 200) {
-          var info = JSON.parse(body);
-          console.log(info.stargazers_count + " Stars");
-          console.log(info.forks_count + " Forks");
-        }
+      if (!error && response.statusCode == 200) {
+        var info = JSON.parse(body);
+        console.log(info.stargazers_count + " Stars");
+        console.log(info.forks_count + " Forks");
+      }
+      done();
     });
-    done();
   });
 
 
