@@ -266,15 +266,17 @@ I've found that in some applications, like web scraping, there are quite a few c
 
 #### A few of the redirect options are:
 
-followRedirect: If true, then follow all HTTP 3xx redirects. Or submit a function(res) {} that is used to determine whether or not to follow the redirect
-followAllRedirects: Follow all non-GET HTTP 3xx redirects
-maxRedirects: The maximum number of times to follow chained redirects (defaults to 10)
+`followRedirect:` If true, then follow all HTTP 3xx redirects. Or submit a function(res) {} that is used to determine whether or not to follow the redirect
 
-## Tests using `Mocha` Javascript framework
+`followAllRedirects:` Follow all non-GET HTTP 3xx redirects
+
+`maxRedirects:` The maximum number of times to follow chained redirects (defaults to 10)
+
+## Automated tests using `Mocha` Javascript framework
 
 Tests are written in the Mocha framework. More about Mocha can be found [here](https://mochajs.org/)
 
-Tests are place in `*.js` files in the `/test/specs/` directory. A typical test will look similar to this:
+Tests are place in `*.js` files, please refer to the sample file resides in the `/test/specs/` directory. A typical test will look similar to this:
 
 //example.js
 
